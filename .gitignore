@@ -1,0 +1,23 @@
+# Compiler files
+cache/
+out/
+
+# Commonly ignored directories
+.logs/
+.ignore/
+
+# Broadcast logs kept local (the deployment is recorded in docs/DEPLOYMENT.md)
+/broadcast/
+
+# Forge-generated API docs only (project docs in docs/ ARE tracked)
+docs/book/
+
+# Internal / strategy docs — kept LOCAL only, never published
+# (grant application, pitch deck, partner strategy, milestone submission, pilot plan)
+private/
+*.docx
+
+# Dotenv file
+.env
+.env.*
+!.env.example

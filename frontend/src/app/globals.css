@@ -1,0 +1,261 @@
+@import "tailwindcss";
+
+:root {
+  /* KUB palette: brand green + celeste on a green-tinted dark surface. */
+  --background: #0b1411;
+  --foreground: #e7f2ec;
+  --primary: #12c48b; /* KUB green */
+  --accent: #38bdf8; /* celeste */
+  --card: rgba(18, 26, 22, 0.65);
+  --card-border: rgba(45, 61, 54, 0.7);
+  --glass: rgba(11, 20, 17, 0.7);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-outfit);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: radial-gradient(circle at top, #11201a 0%, #0b1411 100%);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.glass-panel {
+  background: var(--card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.glass-panel:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 40px rgba(18, 196, 139, 0.15);
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* --- Buttons --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 2.75rem;
+  padding: 0 1.1rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: filter 0.15s ease, transform 0.1s ease, background 0.15s ease, border-color 0.15s ease;
+}
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.btn:not(:disabled):active {
+  transform: translateY(1px);
+}
+.btn-primary {
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  color: #04140e;
+}
+.btn-primary:not(:disabled):hover {
+  filter: brightness(1.08);
+}
+.btn-ghost {
+  background: rgba(45, 61, 54, 0.4);
+  border-color: var(--card-border);
+  color: var(--foreground);
+}
+.btn-ghost:not(:disabled):hover {
+  background: rgba(45, 61, 54, 0.7);
+}
+
+/* --- Inputs --- */
+.input {
+  width: 100%;
+  height: 2.75rem;
+  padding: 0 0.9rem;
+  border-radius: 12px;
+  background: rgba(11, 20, 17, 0.6);
+  border: 1px solid var(--card-border);
+  color: var(--foreground);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+.input:focus {
+  border-color: var(--primary);
+}
+
+/* --- Tabs --- */
+.tab {
+  flex: 1;
+  height: 2.4rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: rgba(231, 242, 236, 0.55);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+.tab:hover {
+  color: var(--foreground);
+}
+.tab-active {
+  color: #04140e;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+}
+
+/* --- Misc --- */
+.stat-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(231, 242, 236, 0.5);
+}
+.stat-value {
+  font-family: var(--font-mono), monospace;
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  border: 1px solid var(--card-border);
+}
+.banner-danger {
+  background: rgba(248, 81, 73, 0.12);
+  border: 1px solid rgba(248, 81, 73, 0.5);
+  border-radius: 14px;
+}
+.banner-warn {
+  background: rgba(210, 153, 34, 0.12);
+  border: 1px solid rgba(210, 153, 34, 0.5);
+  border-radius: 14px;
+}
+.hf-safe {
+  color: #3fb950;
+}
+.hf-warn {
+  color: #d29922;
+}
+.hf-danger {
+  color: #f85149;
+}
+
+/* =========================================================================
+   Landing page (light theme) — KUB green + celeste
+   ========================================================================= */
+
+/* Animated on-brand gradient mesh used behind the hero (compositor-friendly). */
+.kub-mesh {
+  position: absolute;
+  inset: -20%;
+  filter: blur(40px);
+  opacity: 0.9;
+}
+.kub-blob {
+  position: absolute;
+  width: 42%;
+  aspect-ratio: 1;
+  border-radius: 999px;
+  will-change: transform;
+}
+.kub-blob-green {
+  background: radial-gradient(circle at 30% 30%, rgba(18, 196, 139, 0.55), transparent 70%);
+  top: 4%;
+  left: 6%;
+  animation: kub-drift-a 18s ease-in-out infinite alternate;
+}
+.kub-blob-cyan {
+  background: radial-gradient(circle at 60% 40%, rgba(56, 189, 248, 0.5), transparent 70%);
+  top: 18%;
+  right: 4%;
+  animation: kub-drift-b 22s ease-in-out infinite alternate;
+}
+.kub-blob-mint {
+  background: radial-gradient(circle at 50% 50%, rgba(52, 211, 153, 0.4), transparent 70%);
+  bottom: 2%;
+  left: 32%;
+  animation: kub-drift-c 26s ease-in-out infinite alternate;
+}
+@keyframes kub-drift-a {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(12%, 8%, 0) scale(1.15);
+  }
+}
+@keyframes kub-drift-b {
+  from {
+    transform: translate3d(0, 0, 0) scale(1.1);
+  }
+  to {
+    transform: translate3d(-10%, 10%, 0) scale(1);
+  }
+}
+@keyframes kub-drift-c {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(8%, -10%, 0) scale(1.2);
+  }
+}
+
+/* Seamless marquee: track is rendered twice, translate -50% loops perfectly. */
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 32s linear infinite;
+}
+.marquee-mask:hover .marquee-track {
+  animation-play-state: paused;
+}
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kub-blob,
+  .marquee-track {
+    animation: none;
+  }
+}
